@@ -1,12 +1,4 @@
-<% if @article.errors.any?%>
-    <h2>Following are the errors</h2>
-  <ul>
-      <% @article.errors.full_messages.each do |message| %>
-          <li><%= message %> </li>
-      <% end %>
-    </ul>
-    
-<% end %>
+<%= render 'shared/errors', obj:@article %>
 
 <%= form_with(model: @article, data: { turbo: false }, local: true) do |f| %>
 
