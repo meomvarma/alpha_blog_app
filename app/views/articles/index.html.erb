@@ -1,28 +1,49 @@
-<h1>Article Listing Page</h1>
+<h1 style="text-align: center;">Article Listing Page</h1>
 
-<table>
-    <thead>
-     <tr>
-      <th>Title</th> 
-      <th>Description</th>
-      <th colspan="3">Actions</th>
-     </tr>
-    </thead>
+<head>
+  <style>
+    /* Center the container horizontally */
+    .center-table {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* height: 100vh; Adjust this value for vertical centering if needed */
+    }
+  </style>
+</head>
 
-    <tbody>
-    <% @articles.each do |article| %> 
-     <tr>
-     <td><%= article.title %></td>
-     <td><%= article.description %></td>
-     <%# <td>Placeholder</td> %>
-     <td><%= link_to 'Show', article_path(article) %></td>
-     <td><%= link_to 'Edit', edit_article_path(article)  %></td>
-     <td><%= link_to 'Delete', article_path(article), data: {turbo_method: :delete, turbo_confirm: "Are you sure"} %> </td>
-     </tr>
-    
-    <% end %>
-    </tbody>
 
-</table>
 
-<p><%= link_to 'Create new Article', new_article_path  %></p>
+<div class="center-table">
+    <table> 
+        <thead>
+        <tr>
+        <th style="padding: 15px;">User</th>
+        <th style="padding: 15px;">Title</th> 
+        <th style="padding: 15px;">Description</th>
+        <th colspan="3">Actions</th>
+        </tr>
+        </thead>
+
+      <tbody>
+        <% @articles.each do |article| %> 
+        <tr>
+        <td style="padding: 7px;"><%= article.user.username if article.user%></td>
+        <td style="padding: 7px;"><%= article.title %></td>
+        <td style="padding: 5px;"><%= article.description %></td>
+        <%# <td>Placeholder</td> %>
+        <td><%= link_to 'Show', article_path(article) %></td>
+        <td><%= link_to 'Edit', edit_article_path(article)  %></td>
+        <td><%= link_to 'Delete', article_path(article), data: {turbo_method: :delete, turbo_confirm: "Are you sure"} %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+<br>
+  <div class="flickr_pagination"> 
+    <%= will_paginate @articles, :container => false %>
+  </div>
+
+  <p style="text-align: center;"><%= link_to 'Create new Article', new_article_path  %></p>
+

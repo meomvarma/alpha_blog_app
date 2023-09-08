@@ -1,0 +1,21 @@
+<h1 style="text-align: center;">Alpha Bloggers</h1>
+    <% @users.each do |user| %> 
+
+     <h2 style="text-align: center;"><%= user.username %></h2>
+     <h5 style="text-align: center;"><%=  gravatar_for(user, size: 50) %></h5>
+     <p style="text-align: center;"><%= pluralize(user.articles.count, "article") %></p>
+            <h3 style="text-align: center;">
+            <%= link_to "View profile", user%> |
+            <%= link_to "Edit profile", edit_user_path(user)  %>
+            </h3>
+              
+     <p style="text-align: center;">Joined <%= time_ago_in_words(user.created_at) %> ago</p>
+    <% end %>
+
+
+
+  <div class="flickr_pagination"> 
+    <%= will_paginate @users, :container => false %>
+  </div>
+
+
