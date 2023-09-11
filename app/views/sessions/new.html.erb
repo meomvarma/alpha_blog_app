@@ -1,0 +1,45 @@
+<head>
+  <style>
+    /* Adjust the width and height of the input element */
+    input {
+      width: 200px; /* Set the desired width */
+      height: 30px; /* Set the desired height */
+    }
+    .center-table {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+    }
+
+  </style>
+</head>
+
+
+
+<h1 style="text-align:center;">Log in for AlphaBlog</h1>
+
+<%# <%= render 'shared/errors', obj:@user  %>
+
+<div class="center-table">
+  <%= form_with(scope: :session, url: login_path, local: true, data:{turbo:false}) do |f| %>
+
+
+    <p>
+    <%= f.label :email %> <br> 
+    <%= f.email_field :email, placeholder: "Enter your email address" %>
+    </p>
+
+    <p>
+    <%= f.label :password %> <br> 
+    <%= f.password_field :password , placeholder: "Enter your password" %>
+    </p>
+
+    <p>
+    <%= f.submit ("Log in") %>
+    </p>
+
+    <%= link_to 'Cancel and return to articles listing ', articles_path    %>  
+
+</div>
+<% end %>
